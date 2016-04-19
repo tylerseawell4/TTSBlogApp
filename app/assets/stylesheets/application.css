@@ -2,4 +2,38 @@
  *= require_tree .
  *= require_self
  */
+ 
+ h1 {
+     font-family: 'Permanent Marker';
+     font-size: 40px;
+ }
 
+.cant-see-me {
+    display: none;
+}
+
+body {
+    background: #B9E1E5;
+}
+
+.container{
+    background: rgba(255,255,255,.7);
+}
+
+a {
+    color: #333F40;
+}
+
+.panel-heading{
+    font-size: 30px;
+    font-family: 'Shadows Into Light';
+}
+
+.panel-heading p{
+    background: black;
+}
+
+.panel-success>.panel-heading{
+    background-color: #363F40;
+    color: white;
+}
