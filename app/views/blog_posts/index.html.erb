@@ -4,27 +4,24 @@
 
 <div class='row'>
     <% @blog_posts.each do |blog_post| %>
-      <div class="col-md-6">
+      <div class="col-md-3">
         <div class="panel panel-default">
           <div class="panel-heading">
          <%= link_to blog_post.title, blog_post%>
           </div>
           <div class="panel-body">
-        by <strong><%= blog_post.author %></strong><br />
-
-      <!--<p>-->
-      <!--  <%= truncate(blog_post.blog_entry, length: 250, separator: " ") %> <br /> [<%= link_to 'Read More', blog_post %>]-->
-      <!--</p>-->
-
- <p><span class="posted-at"><%= blog_post.created_at.strftime('%m/%d/%Y %I:%M%p') %></span></p>
+        by <strong><%= link_to blog_post.user.username, user_posts_path(id: blog_post.user.id) %></strong><br />
+        <p><span class="posted-at"><%= blog_post.created_at.strftime('%m/%d/%Y %I:%M%p') %></span></p>
         <p><%= blog_post.blog_entry[0...250]+"..." %></p>
             <%= link_to "Read More", blog_post %>
         </div>
+        
+        <% if current_user.id == blog_post.user.id %>
         <div class="panel-footer">
-       
         <%= link_to 'Edit', edit_blog_post_path(blog_post), class: "btn btn-info" %>
         <%= link_to 'Destroy', blog_post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
       </div>
+      <% end %>
       </div>
       </div>
     <% end %>
@@ -35,5 +32,3 @@
 <div class="btn-group">
 <%= link_to 'New Blog post', new_blog_post_path, class:"btn btn-primary" %>
 </div>
-
-<%= link_to 'Comments', comments_path %>
